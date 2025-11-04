@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/townfind
+    username: townfind
+    password: townfind
+  jpa:
+    hibernate:
+      ddl-auto: update   # dev only; auto-creates/updates tables
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+
+server:
+  port: 8080
