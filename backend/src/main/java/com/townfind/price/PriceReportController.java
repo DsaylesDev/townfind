@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -39,5 +40,14 @@ public class PriceReportController {
     @GetMapping("/latest")
     public PriceReport latest(@RequestParam Long storeId, @RequestParam Long itemId) {
         return repo.findTopByStore_IdAndItem_IdOrderByCreatedAtDesc(storeId, itemId).orElseThrow();
+    }
+    @GetMapping("/recent")
+    public List<PriceReport> recentPrices(@RequestParam Long itemId) {
+        return repo.findTop10ByItem_IdOrderByCreatedAtDesc(itemId);
+    }
+
+    @GetMapping("/history")
+    public List<PriceReport> priceHistory(@RequestParam Long storeId, @RequestParam Long itemId) {
+        return repo.findTop20ByStore_IdAndItem_IdOrderByCreatedAtDesc(storeId, itemId);
     }
 }
