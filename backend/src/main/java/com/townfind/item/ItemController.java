@@ -20,5 +20,13 @@ public class ItemController {
     public Item create(@RequestBody Item item) {
         return repo.save(item);
     }
+
+    @GetMapping("/search")
+    public List<Item> searchItems(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String brand) {
+        return repo.searchItems(name, brand);
+    }
+
 }
 
