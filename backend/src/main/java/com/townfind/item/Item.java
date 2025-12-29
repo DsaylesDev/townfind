@@ -9,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "item")
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +18,9 @@ public class Item {
     @Column(nullable = false)
     private String name;
 
+    @Column
     private String brand;
+
+    @Column(name = "size_text")
     private String sizeText; // e.g., "1 gal", "12 ct"
 }
